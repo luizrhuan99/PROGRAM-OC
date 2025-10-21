@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+int main() {
+    // ===============================================
+    // SIMULAÇÃO DE MOVIMENTOS DE XADREZ
+    // Peças: Torre, Bispo e Rainha
+    // Estruturas de repetição: for, while e do-while
+    // ===============================================
+
+    // ----------------------------
+    // TORRE - 5 casas para a direita
+    // Utilizando a estrutura FOR
+    // ----------------------------
+    int i;
+    int casasTorre = 5;
+    printf("Movimento da Torre (5 casas para a direita):\n");
+    for (i = 1; i <= casasTorre; i++) {
+        printf("Casa %d: Direita\n", i);
+    }
+    printf("\n");
+
+    // ----------------------------
+    // BISPO - 5 casas diagonal para cima e à direita
+    // Utilizando a estrutura WHILE
+    // ----------------------------
+    int casasBispo = 5;
+    int j = 1;
+    printf("Movimento do Bispo (5 casas diagonal Cima-Direita):\n");
+    while (j <= casasBispo) {
+        printf("Casa %d: Cima, Direita\n", j);
+        j++;
+    }
+    printf("\n");
+
+    // ----------------------------
+    // RAINHA - 8 casas para a esquerda
+    // Utilizando a estrutura DO-WHILE
+    // ----------------------------
+    int casasRainha = 8;
+    int k = 1;
+    printf("Movimento da Rainha (8 casas para a esquerda):\n");
+    do {
+        printf("Casa %d: Esquerda\n", k);
+        k++;
+    } while (k <= casasRainha);
+
+    printf("\nFim da simulação de movimentos.\n");
+
+    return 0;
+}
