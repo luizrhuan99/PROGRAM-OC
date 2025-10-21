@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <string.h>
+
+// Estrutura que representa uma carta do Super Trunfo
+struct Carta {
+    char estado[30];
+    char codigo[10];
+    char nome[40];
+    int populacao;
+    float area;
+    float pib;
+    int pontosTuristicos;
+    float densidade;      // População / Área
+    float pibPerCapita;   // PIB / População
+};
+
+int main() {
+    // Duas cartas pré-definidas
+    struct Carta carta1 = {"SP", "SP01", "São Paulo", 12300000, 1521.0, 700.0, 10, 0.0, 0.0};
+    struct Carta carta2 = {"RJ", "RJ01", "Rio de Janeiro", 6000000, 1200.0, 400.0, 8, 0.0, 0.0};
+
+    // Calcular densidade populacional e PIB per capita
+    carta1.densidade = carta1.populacao / carta1.area;
+    carta1.pibPerCapita = carta1.pib / carta1.populacao;
+
+    carta2.densidade = carta2.populacao / carta2.area;
+    carta2.pibPerCapita = carta2.pib / carta2.populacao;
+
+    // Escolha do atributo para comparação diretamente no código
+    // Opções: "populacao", "area", "pib", "densidade", "pibPerCapita"
+    char atributoEscolhido[] = "populacao";  // <- Alterar aqui para testar outro atributo
+
+    printf("=============================================\n");
+    printf("Comparação de cartas (Atributo: %s)\n\n", atributoEscolhido);
+
+    // Exibir os valores das cartas
+    printf("Carta 1 - %s (%s):\n", carta1.nome, carta1.estado);
+    if (strcmp(atributoEscolhido, "populacao") == 0)
+        printf("%d\n", carta1.populacao);
+    else if (strcmp(atributoEscolhido, "area") == 0)
+        printf("%.2f km²\n", carta1.area);
+    else if (strcmp(atributoEscolhido, "pib") == 0)
+        printf("%.2f bilhões\n", carta1.pib);
+    else if (strcmp(atributoEscolhido, "densidade") == 0)
+        printf("%.2f hab/km²\n", carta1.densidade);
+    else if (strcmp(atributoEscolhido, "pibPerCapita") == 0)
+        printf("%.2f\n", carta1.pibPerCapita);
+
+    printf("\nCarta 2 - %s (%s):\n", carta2.nome, carta2.estado);
+    if (strcmp(atributoEscolhido, "populacao") == 0)
+        printf("%d\n", carta2.populacao);
+    else if (strcmp(atributoEscolhido, "area") == 0)
+        printf("%.2f km²\n", carta2.area);
+    else if (strcmp(atributoEscolhido, "pib") == 0)
+        printf("%.2f bilhões\n", carta2.pib);
+    else if (strcmp(atributoEscolhido, "densidade") == 0)
+        printf("%.2f hab/km²\n", carta2.densidade);
+    else if (strcmp(atributoEscolhido, "pibPerCapita") == 0)
+        printf("%.2f\n", carta2.pibPerCapita);
+
+    // Comparação do atributo
+    int vencedor = 0; // 1 = carta1, 2 = carta2, 0 = empate
+
+    if (strcmp(atributoEscolhido, "populacao") == 0) {
+        if (carta1.populacao > carta2.populacao)
+            vencedor = 1;
+        else if (carta2.populacao > carta1.populacao)
+            vencedor = 2;
+    } else if (strcmp(atributoEscolhido, "area") == 0) {
+        if (carta1.area > carta2.area)
+            vencedor = 1;
+        else if (carta2.area > carta1.area)
+            vencedor = 2;
+    } else if (strcmp(atributoEscolhido, "pib") == 0) {
+        if (carta1.pib > carta2.pib)
+            vencedor = 1;
+        else if (carta2.pib > carta1.pib)
+            vencedor = 2;
+    } else if (strcmp(atributoEscolhido, "densidade") == 0) {
+        // Para densidade, menor valor vence
+        if (carta1.densidade < carta2.densidade)
+            vencedor = 1;
+        else if (carta2.densidade < carta1.densidade)
+            vencedor = 2;
+    } else if (strcmp(atributoEscolhido, "pibPerCapita") == 0) {
+        if (carta1.pibPerCapita > carta2.pibPerCapita)
+            vencedor = 1;
+        else if (carta2.pibPerCapita > carta1.pibPerCapita)
+            vencedor = 2;
+    }
+
+    // Exibir resultado
+    printf("\nResultado: ");
+    if (vencedor == 1)
+        printf("Carta 1 (%s) venceu!\n", carta1.nome);
+    else if (vencedor == 2)
+        printf("Carta 2 (%s) venceu!\n", carta2.nome);
+    else
+        printf("Empate!\n");
+
+    printf("=============================================\n");
+
+    return 0;
+}
